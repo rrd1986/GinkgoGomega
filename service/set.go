@@ -1,10 +1,17 @@
 package service
 
+type GoSet interface {
+	IsEmpty() bool
+	Add(s string)
+	Size() int
+	Contains(s string) bool
+}
+
 type Set struct {
 	size int
 }
 
-func NewSet() *Set {
+func NewSet() GoSet {
 	return &Set{0}
 }
 

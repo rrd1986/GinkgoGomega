@@ -1,32 +1,31 @@
-package ginkgo_test
+package service
 
 import (
-	"github.com/rrd1986/ginkgo_gomega_example/service"
-	set "github.com/rrd1986/ginkgo_gomega_example/service"
+	"testing"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 )
 
-var s *service.Set
+var s GoSet
 
 var _ = Describe("Set", func() {
 
 	BeforeEach(func() {
-		s = set.NewSet()
+		s = NewSet()
 	})
 
 	Describe("Emptyness", func() {
 		Context("When the set doe not contain items", func() {
 			It("Should be empty", func() {
-				s := set.NewSet()
+				s := NewSet()
 				Expect(s.IsEmpty()).To(BeTrue())
 			})
 		})
 
 		Context("When the set contain items", func() {
 			It("Should not be empty", func() {
-				s := set.NewSet()
+				s := NewSet()
 				s.Add("item1")
 				Expect(s.IsEmpty()).To(BeFalse())
 			})
@@ -73,3 +72,9 @@ var _ = Describe("Set", func() {
 	})
 
 })
+
+func TestGinkoSuite(t *testing.T) {
+	RegisterFailHandler(Fail)
+	RunSpecs(t, "Ginkgo Suites")
+
+}
